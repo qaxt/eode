@@ -1,7 +1,6 @@
 /*
-  export function eode() {
-    console.log('eode')
-  }
+  Made by Qaxt
+  See LICENSE
 */
 
 function type(data) {
@@ -119,12 +118,20 @@ export function intersect(...arrays: any[][]) : any[] {
   })
 }
 
-export function mapKeys(o: object, rule: (value: any) => any) {
+export function mapKeys(o: object, rule: (key: any, value: any) => any) {
+  let thing = {}
+  for (const [key, value] of Object.entries(o)) {
+    thing[rule(key, o[key])] = o[key]
+  }
+  return thing
+}
+
+export function mapValues(o: object, rule: (value: any) => any) {
   let thing = {}
   for (const [key, value] of Object.entries(o)) {
     thing[key] = rule(o[key])
   }
-  
+  return thing
 }
 
 export function matches(rule: object) {
