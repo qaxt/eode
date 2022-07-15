@@ -63,3 +63,9 @@ console.log(_.intersect([0, 'text', [], {}], [0, 'text'], ['text', {}]))
 
 console.log(_.exclude([0, 'text', [], {}], [0, 'text'], ['text', {}]))
 // [[]]
+
+console.log(_.mapKeys({ apple: 'alpha', ball: 'beta' }, k => k[0]))
+// { a: 'alpha', b: 'beta' }
+
+console.log(_.mapValues({ apple: 'alpha', ball: 'beta' }, v => v[0]))
+// { apple: 'a', ball: 'b' }
