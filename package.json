@@ -1,0 +1,25 @@
+{
+  "author": "qaxt",
+  "name": "eode",
+  "description": "Eode is an amazing, hybrid, JavaScript package. It includes advanced functions for arrays and objects that lodash doesn't have!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaxt/eode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qaxt/eode/issues"
+  },
+  "homepage": "https://github.com/qaxt",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "tsup": "^6.1.3"
+  },
+  "scripts": {
+    "pack": "tsup src/index.ts --format cjs,esm",
+    "esm": "tsup src/index.ts --format cjs,esm && node index.mjs",
+    "cjs": "node index.js",
+    "go": "tsup src/index.ts --format cjs,esm && node index.js"
+  }
+}
