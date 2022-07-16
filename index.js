@@ -69,3 +69,13 @@ console.log(_.mapKeys({ apple: 'alpha', ball: 'beta' }, k => k[0]))
 
 console.log(_.mapValues({ apple: 'alpha', ball: 'beta' }, v => v[0]))
 // { apple: 'a', ball: 'b' }
+
+console.log(_.unique([0, 'text', [], {}, 'text', {}]))
+// [0, 'text', [], {}]
+
+for (num of _.range(10, 0, 2)) {
+  console.log(num)
+}
+
+console.log(_.find([[], {}, 'a', 'b', 'c'], {})) // binary search
+// 1

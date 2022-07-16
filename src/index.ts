@@ -96,6 +96,19 @@ export function filter(a: object[], rule: any) {
   }
 }
 
+export function find(a: any[], item, start, end) {
+  if (!start) start = 0
+  if (!end) end = a.length
+  if (start > end) return undefined
+  let mid = Math.floor((start + end) / 2)
+  if (this.equal(a[mid], item)) return mid
+  if (a[mid] > item) {
+    return this.find(a, item, start, mid - 1)
+  } else {
+    return this.find(a, item, mid + 1, end)
+  }
+}
+
 export function includes(a: any[], item: any) : boolean {
   for (let i = 0; i < a.length; i++) {
     if (this.equal(a[i], item)) return true
@@ -176,6 +189,22 @@ export function property(key) {
   }
 }
 
+export function range(start: number, end: number, step: number) {
+  let a = []
+  if (!step) step = 1
+  if (start > end) {
+    step *= -1
+    for (let i = start; i > end; i += step) {
+      a.push(i)
+    }
+  } else {
+    for (let i = start; i < end; i += step) {
+      a.push(i)
+    }
+  }
+  return a
+}
+
 export function subtract(target: any[], ...arrays: any[][]) : any[] {
   let sub = []
   for (const a of arrays) {
@@ -184,6 +213,22 @@ export function subtract(target: any[], ...arrays: any[][]) : any[] {
   return target.filter((x) => {
     return !this.includes(sub, x)
   })
+}
+
+export function times(n: number, fn: () => any) : any[] {
+  let a = []
+  for (let i = 0; i < n; i++) {
+    a.push(fn())
+  }
+  return a
+}
+
+export function unique(a: any[]) : any[] {
+  const c = []
+  for (let i = 0; i < a.length; i++) {
+    if (!this.includes(c, a[i])) c.push(a[i])
+  }
+  return c
 }
 
 export function unite(...arrays: any[][]) : any[] {
