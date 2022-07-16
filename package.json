@@ -2,6 +2,7 @@
   "author": "qaxt",
   "name": "eode",
   "description": "Eode is an amazing, hybrid, JavaScript package. It includes advanced functions for arrays and objects that lodash doesn't have!",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qaxt/eode.git"

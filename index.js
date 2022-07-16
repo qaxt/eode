@@ -63,3 +63,25 @@ console.log(_.intersect([0, 'text', [], {}], [0, 'text'], ['text', {}]))
 
 console.log(_.exclude([0, 'text', [], {}], [0, 'text'], ['text', {}]))
 // [[]]
+
+console.log(_.mapKeys({ apple: 'alpha', ball: 'beta' }, k => k[0]))
+// { a: 'alpha', b: 'beta' }
+
+console.log(_.mapValues({ apple: 'alpha', ball: 'beta' }, v => v[0]))
+// { apple: 'a', ball: 'b' }
+
+console.log(_.unique([0, 'text', [], {}, 'text', {}]))
+// [0, 'text', [], {}]
+
+for (let num of _.range(10, 0, 2)) {
+  console.log(num)
+}
+
+console.log(_.find([[], {}, 'a', 'b', 'c'], {})) // binary search
+// 1
+
+console.log(_.shuffle([0, 1, 2, 3], 2))
+// [2, 3, 0, 1]
+
+console.log(_.zip(['id', 0, 1, 2], ['username', 'qaxt', 'bob', 'npm']))
+// [['id', 'username'], [0, 'qaxt'], [1, 'bob'], [2, 'npm']]
