@@ -73,7 +73,7 @@ console.log(_.mapValues({ apple: 'alpha', ball: 'beta' }, v => v[0]))
 console.log(_.unique([0, 'text', [], {}, 'text', {}]))
 // [0, 'text', [], {}]
 
-for (num of _.range(10, 0, 2)) {
+for (let num of _.range(10, 0, 2)) {
   console.log(num)
 }
 

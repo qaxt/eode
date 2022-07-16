@@ -9,12 +9,12 @@ npm i eode
 ## Usage
 ### CJS
 ```js
-const _ = require('./dist/index.js')
+const _ = require('eode')
 ```
 
 ### ESM
 ```js
-import _ from "./dist/index.mjs"
+import _ from "eode"
 ```
 
 ## Examples
