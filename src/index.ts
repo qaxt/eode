@@ -17,6 +17,8 @@ function type(data) {
   }
 }
 
+// Array
+
 export function chunk(a: any[], n: number) {
   if (n) {
     n = Math.abs(n)
@@ -131,22 +133,6 @@ export function intersect(...arrays: any[][]) : any[] {
   })
 }
 
-export function mapKeys(o: object, rule: (key: any, value: any) => any) {
-  let thing = {}
-  for (const [key, value] of Object.entries(o)) {
-    thing[rule(key, o[key])] = o[key]
-  }
-  return thing
-}
-
-export function mapValues(o: object, rule: (value: any) => any) {
-  let thing = {}
-  for (const [key, value] of Object.entries(o)) {
-    thing[key] = rule(o[key])
-  }
-  return thing
-}
-
 export function matches(rule: object) {
   return (o: object) => {
     for (const [key, value] of Object.entries(rule)) {
@@ -205,6 +191,14 @@ export function range(start: number, end: number, step: number) {
   return a
 }
 
+export function shuffle(a: any[], n: number) {
+  if (!n || n < 1) n = 1
+  for (let i of this.range(0, n)) {
+    a.push(a.shift())
+  }
+  return a
+}
+
 export function subtract(target: any[], ...arrays: any[][]) : any[] {
   let sub = []
   for (const a of arrays) {
@@ -237,4 +231,34 @@ export function unite(...arrays: any[][]) : any[] {
     unision = unision.concat(a)
   }
   return unision
+}
+
+export function zip(...arrays: any[][]) : any[] {
+  let zipped = []
+  for (let i = 0; i < arrays[0].length; i++) {
+    const items = []
+    for (const a of arrays) {
+      items.push(a[i])
+    }
+    zipped.push(items)
+  }
+  return zipped
+}
+
+// Objects
+
+export function mapKeys(o: object, rule: (key: any, value: any) => any) {
+  let thing = {}
+  for (const [key, value] of Object.entries(o)) {
+    thing[rule(key, o[key])] = o[key]
+  }
+  return thing
+}
+
+export function mapValues(o: object, rule: (value: any) => any) {
+  let thing = {}
+  for (const [key, value] of Object.entries(o)) {
+    thing[key] = rule(o[key])
+  }
+  return thing
 }

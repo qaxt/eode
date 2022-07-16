@@ -79,3 +79,9 @@ for (num of _.range(10, 0, 2)) {
 
 console.log(_.find([[], {}, 'a', 'b', 'c'], {})) // binary search
 // 1
+
+console.log(_.shuffle([0, 1, 2, 3], 2))
+// [2, 3, 0, 1]
+
+console.log(_.zip(['id', 0, 1, 2], ['username', 'qaxt', 'bob', 'npm']))
+// [['id', 'username'], [0, 'qaxt'], [1, 'bob'], [2, 'npm']]
