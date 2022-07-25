@@ -3,12 +3,12 @@ const _ = require('./dist/index.js')
 console.log(_.chunk([0, 'text', [], {}], 3))
 // [[0, 'text', []], [{}]]
 
-console.log(_.equal([], []))
-console.log(_.equal([0, 'text'], [0, 'text']))
-console.log(_.equal([0, 'text', [], {}], [0, 'text', [], {}]))
-console.log(_.equal({}, {}))
-console.log(_.equal({ a: 0 }, { a: 0 }))
-console.log(_.equal({ a: 0, b: [] }, { a: 0, b: [] }))
+console.log(_.eq([], []))
+console.log(_.eq([0, 'text'], [0, 'text']))
+console.log(_.eq([0, 'text', [], {}], [0, 'text', [], {}]))
+console.log(_.eq({}, {}))
+console.log(_.eq({ a: 0 }, { a: 0 }))
+console.log(_.eq({ a: 0, b: [] }, { a: 0, b: [] }))
 // true
 
 const users = [
@@ -37,6 +37,24 @@ console.log(_.filter(users, ['name', 'John'])) // _.matchesProperty shorthand
 // [{ name: 'John', age: 18, deleted: false }]
 console.log(_.filter(users, 'deleted')) // _.property shorthand
 // [{ name: 'Bob', age: 69, deleted: true }]
+
+console.log(_.find(users, _.must({ age: '> 16' })))
+// { name: 'John', age: 18, deleted: false }
+console.log(_.find(users, { age: 13 })) // _.matches shorthand
+// { name: 'Jane', age: 18, deleted: false }
+console.log(_.find(users, ['name', 'John'])) // _.matchesProperty shorthand
+// { name: 'John', age: 18, deleted: false }
+console.log(_.find(users, 'deleted')) // _.property shorthand
+// { name: 'Bob', age: 69, deleted: true }
+
+console.log(_.findIndexes(users, _.must({ age: '> 16' })))
+// [0, 2]
+console.log(_.findIndexes(users, { age: 13 })) // _.matches shorthand
+// [1]
+console.log(_.findIndexes(users, ['name', 'John'])) // _.matchesProperty shorthand
+// [0]
+console.log(_.findIndexes(users, 'deleted')) // _.property shorthand
+// [2]
 
 console.log(_.distill(users, _.must({ age: ['&&', '>= 13', '<= 18'] })))
 // [[John, Jane], [Bob]]
@@ -77,7 +95,7 @@ for (let num of _.range(10, 0, 2)) {
   console.log(num)
 }
 
-console.log(_.find([[], {}, 'a', 'b', 'c'], {})) // binary search
+console.log(_.search([[], {}, 'a', 'b', 'c'], {})) // binary search
 // 1
 
 console.log(_.shuffle([0, 1, 2, 3], 2))
@@ -85,3 +103,46 @@ console.log(_.shuffle([0, 1, 2, 3], 2))
 
 console.log(_.zip(['id', 0, 1, 2], ['username', 'qaxt', 'bob', 'npm']))
 // [['id', 'username'], [0, 'qaxt'], [1, 'bob'], [2, 'npm']]
+
+console.log(_.indexes([0, 'text', [], {}, 'text', ['text']], 'text'))
+// [1, 4]
+
+console.log(_.last([0, 'text', [], {}]))
+// {}
+console.log(_.last(_.indexes([0, 'text', [], {}, 'text', ['text']], 'text')))
+// 4
+
+console.log(_.factors(-12))
+// [1, -12, -1, 12, 2, -6, -2, 6, 3, -4, -3, 4]
+
+console.log(_.insert([0, 'text', [], {}], 2, { a: 0 }))
+// 
+
+console.log(_.fromPairs([['a', 0], ['b', []]]))
+// { a: 0, b: [] }
+
+console.log(_.iterate([['id', 0, 1, 2], ['username', 'qaxt', 'bob', 'npm']], (a) => {
+  return a
+}))
+// same output as _.zip(['id', 0, 1, 2], ['username', 'qaxt', 'bob', 'npm'])
+
+const space = _.ndarray(2, 3)
+console.log(space)
+/*
+{
+  length: 2,
+  dimensions: 3,
+  data: [
+    0, 1, 2, 3,
+    4, 5, 6, 7
+  ]
+} 
+*/
+
+console.log(_.ndindex([1, 0, 1], space.length))
+// 5
+console.log(space.data[_.ndindex([1, 0, 1], space.length)])
+// [1, 0, 1]
+
+console.log(_.ndpoint(5, space.length, space.dimensions))
+// [1, 0, 1]
